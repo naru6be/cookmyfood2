@@ -1,0 +1,64 @@
+<div>
+    <h2 id="page-heading">
+        <span>Vendors</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-vendor" [routerLink]="['/vendor/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Vendor
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="vendors?.length === 0">
+        <span>No vendors found</span>
+    </div>
+    <div class="table-responsive" *ngIf="vendors?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Image</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let vendor of vendors ;trackBy: trackId">
+                <td><a [routerLink]="['/vendor', vendor.id, 'view' ]">{{vendor.id}}</a></td>
+                <td>{{vendor.name}}</td>
+                <td>
+                    <a *ngIf="vendor.image" (click)="openFile(vendor.imageContentType, vendor.image)">
+                        <img [src]="'data:' + vendor.imageContentType + ';base64,' + vendor.image" style="max-height: 30px;" alt="vendor image"/>
+                    </a>
+                    <span *ngIf="vendor.image">{{vendor.imageContentType}}, {{byteSize(vendor.image)}}</span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/vendor', vendor.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/vendor', vendor.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'vendor', { outlets: { popup: vendor.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

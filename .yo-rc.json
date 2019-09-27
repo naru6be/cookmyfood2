@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.cookmyfood.app"
+    },
+    "jhipsterVersion": "6.1.1",
+    "applicationType": "monolith",
+    "baseName": "cookmyfood",
+    "packageName": "com.cookmyfood.app",
+    "packageFolder": "com/cookmyfood/app",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "Yzk1ZTdhZDNiYjdhZWQ0MGRjNjlkYTllNDM4NzJhMzc0NTQyMzc1MGM1NDgyYzcxZmRkYzM5MmM5MGRjMTc2YmZkZWY0NjZlOTZjMDhiNjU0ZDhmNDg3YTM0NzRiZDNjNWYzYTY0MDkzNjA4OWI1NTY5Nzc4NTRjN2RlMjQ1OTY=",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false
+  }
+}

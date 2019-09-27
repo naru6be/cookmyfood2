@@ -1,0 +1,81 @@
+<div>
+    <h2 id="page-heading">
+        <span>Orders</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-order" [routerLink]="['/order/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Order
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="orders?.length === 0">
+        <span>No orders found</span>
+    </div>
+    <div class="table-responsive" *ngIf="orders?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Employeeid</span></th>
+            <th><span>Phone</span></th>
+            <th><span>Date</span></th>
+            <th><span>Cost</span></th>
+            <th><span>Status</span></th>
+            <th><span>User</span></th>
+            <th><span>Vendor</span></th>
+            <th><span>Fooditem</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let order of orders ;trackBy: trackId">
+                <td><a [routerLink]="['/order', order.id, 'view' ]">{{order.id}}</a></td>
+                <td>{{order.employeeid}}</td>
+                <td>{{order.phone}}</td>
+                <td>{{order.date | date:'medium'}}</td>
+                <td>{{order.cost}}</td>
+                <td>{{order.status}}</td>
+                <td>
+                    {{order.user?.login}}
+                </td>
+                <td>
+                    <div *ngIf="order.vendor">
+                        <a [routerLink]="['../vendor', order.vendor?.id, 'view' ]" >{{order.vendor?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="order.fooditem">
+                        <a [routerLink]="['../food-item', order.fooditem?.id, 'view' ]" >{{order.fooditem?.foodname}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/order', order.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/order', order.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'order', { outlets: { popup: order.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

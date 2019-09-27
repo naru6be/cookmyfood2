@@ -1,0 +1,36 @@
+{
+    "name": "Menu",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "menu",
+            "relationshipName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "foodItem",
+            "otherEntityRelationshipName": "menu",
+            "relationshipName": "fooditem",
+            "otherEntityField": "foodname"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "vendor",
+            "otherEntityRelationshipName": "menu",
+            "relationshipName": "vendor",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20190926230810",
+    "entityTableName": "menu",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,43 @@
+
+
+
+entity Vendor
+{
+	name String required,
+    image ImageBlob ,
+}
+entity Menu 
+entity FoodItem {
+	foodname String required ,
+    cost Long required ,
+    image ImageBlob ,
+    capacity Integer required
+}
+/*
+// an ignored comment
+/** not an ignored comment */
+entity Order {
+    employeeid String required,
+    phone String,
+    date Instant required,
+	cost Long,
+    status Status,
+}
+
+enum Status {
+    INPROGRESS, READYTOSERVE, COMPLETED
+}
+relationship OneToMany {
+  FoodItem to Menu{fooditem(foodname)}
+  Vendor to Menu{vendor(name)}
+  Vendor to Order{vendor(name)}
+  FoodItem to Order{fooditem(foodname)}
+}
+relationship ManyToOne {
+FoodItem{user(login)} to User
+Menu{user(login)} to User
+Order{user(login)} to User
+}
+
+
+

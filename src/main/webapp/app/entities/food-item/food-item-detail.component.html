@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="foodItem">
+            <h2><span>Food Item</span> {{foodItem.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Foodname</span></dt>
+                <dd>
+                    <span>{{foodItem.foodname}}</span>
+                </dd>
+                <dt><span>Cost</span></dt>
+                <dd>
+                    <span>{{foodItem.cost}}</span>
+                </dd>
+                <dt><span>Image</span></dt>
+                <dd>
+                    <div *ngIf="foodItem.image">
+                        <a (click)="openFile(foodItem.imageContentType, foodItem.image)">
+                            <img [src]="'data:' + foodItem.imageContentType + ';base64,' + foodItem.image" style="max-width: 100%;" alt="foodItem image"/>
+                        </a>
+                        {{foodItem.imageContentType}}, {{byteSize(foodItem.image)}}
+                    </div>
+                </dd>
+                <dt><span>Capacity</span></dt>
+                <dd>
+                    <span>{{foodItem.capacity}}</span>
+                </dd>
+                <dt><span>User</span></dt>
+                <dd>
+                    {{foodItem.user?.login}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/food-item', foodItem.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

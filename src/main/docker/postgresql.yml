@@ -1,0 +1,11 @@
+version: '2'
+services:
+  cookmyfood-postgresql:
+    image: postgres:11.3
+    # volumes:
+    #     - ~/volumes/jhipster/cookmyfood/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=cookmyfood
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432
