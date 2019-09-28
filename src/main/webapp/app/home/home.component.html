@@ -2,8 +2,7 @@
     <!-- <div class="col-md-3">
         <span class="hipster img-fluid rounded"></span>
     </div> -->
-    <div class="col-md-9">
-        <h1 class="display-4">Welcome To CookMyFood!</h1>
+    
         <!-- <p class="lead">This is your homepage</p> -->
 
         <div [ngSwitch]="isAuthenticated()">
@@ -21,8 +20,23 @@
                 <a class="alert-link" routerLink="register">Register a new account</a>
             </div> -->
 			
-			<h3>Choose Vendor</h3>
-			<p-tabMenu [model]="items2" [activeItem]="activeItem">
+         
+            
+            <div class="grid grid-pad">
+                <a *ngFor="let vendor of vendors" class="col-1-4"
+                    routerLink="/detail/{{vendor.name}}">
+                  <!--<div class="module hero">-->
+                        <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vendor.name}}</h4>
+                    <img [src]="'data:' + vendor.imageContentType + ';base64,' + vendor.image" style="max-height: 200px;" alt="vendor image"/>
+                            
+                    
+                    <!-- <h4>{{vendor.name}}</h4> 
+                  </div> -->
+                </a>
+              </div>
+
+
+		<!--	<p-tabMenu [model]="items2" [activeItem]="activeItem">
 				<ng-template pTemplate="item" let-item let-i="index">
 					<div style="position: relative; text-align: center; min-width: 10em">
 						<div class="ui-menuitem-icon" [ngClass]="item.icon" *ngIf="item.icon" style="font-size: 2em"></div>
@@ -34,10 +48,33 @@
 						</a>
 					</div>
 				</ng-template>
-			</p-tabMenu>
+            </p-tabMenu>
+
+            
+
+            <p-tabMenu [model]="vendors" [activeItem]="activeItem">
+                    <ng-template pTemplate="item" let-item let-i="index">
+                        <div style="position: relative; text-align: center; min-width: 10em">
+                            <div class="ui-menuitem-icon" [ngClass]="item.icon" *ngIf="item.icon" style="font-size: 2em"></div>
+                            <div class="ui-menuitem-text">
+                                {{item.label}}
+                            </div>
+                            <a tabindex="0" class="ui-menuitem-icon" (click)="closeItem($event, i)" style="position: absolute; right: -1em; top: -.5em; padding: 0" *ngIf="i !== 0">
+                                <span class="pi pi-times"></span>
+                            </a>
+                        </div>
+                    </ng-template>
+                </p-tabMenu>
+
+
+            
+            <div class="table-responsive" *ngIf="vendors?.length > 0">
+              <div *ngFor="let vendor of vendors ;trackBy: trackId"> 
+           {{vendor.name}}
+           </div>
         </div>
 
-       <!-- <p>
+        <p>
             If you have any question on JHipster:
         </p>
 
@@ -52,5 +89,6 @@
         <p>
             <span>If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener">GitHub</a>!
         </p> -->
+    
     </div>
 </div>
