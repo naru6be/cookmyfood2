@@ -1,0 +1,16 @@
+<div class="row">
+    <p class="lead">Choose Menu</p>
+<div class="grid grid-pad">
+      <a  *ngFor="let menu of menus ;trackBy: trackId" class="col-1-4"
+          routerLink="/pay">
+        <!--<div class="module hero">-->
+          
+            <ng-template [ngIf]= "menu.vendor?.name === vendorName">
+              <h4>{{menu.fooditem?.foodname}}</h4>
+           <img [src]="'data:' + menu.fooditem?.imageContentType + ';base64,' + menu.fooditem?.image" style="max-height: 200px;" alt="fooditem image"/>
+          </ng-template>
+          <!-- <h4>{{vendor.name}}</h4> 
+        </div> -->
+      </a>
+    </div>
+  </div>

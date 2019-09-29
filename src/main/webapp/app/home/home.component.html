@@ -3,7 +3,7 @@
         <span class="hipster img-fluid rounded"></span>
     </div> -->
     
-        <!-- <p class="lead">This is your homepage</p> -->
+        <p class="lead">Choose Vendor</p>
 
         <div [ngSwitch]="isAuthenticated()">
            <!-- <div class="alert alert-success" *ngSwitchCase="true">
@@ -24,13 +24,11 @@
             
             <div class="grid grid-pad">
                 <a *ngFor="let vendor of vendors" class="col-1-4"
-                    routerLink="/detail/{{vendor.name}}">
+                    routerLink="/listmenu/{{vendor.name}}}">
                   <!--<div class="module hero">-->
-                        <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vendor.name}}</h4>
+                        <h4>{{vendor.name}}</h4>
                     <img [src]="'data:' + vendor.imageContentType + ';base64,' + vendor.image" style="max-height: 200px;" alt="vendor image"/>
-                            
-                    
-                    <!-- <h4>{{vendor.name}}</h4> 
+                   <!-- <h4>{{vendor.name}}</h4> 
                   </div> -->
                 </a>
               </div>
