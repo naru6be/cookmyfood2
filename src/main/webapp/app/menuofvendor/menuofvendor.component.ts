@@ -8,6 +8,9 @@ import { IMenu } from 'app/shared/model/menu.model';
 import { AccountService } from 'app/core';
 import { MenuService } from 'app/entities/menu/menu.service';
 import { ActivatedRoute } from "@angular/router";
+import {DialogModule} from 'primeng/dialog';
+import { Menu1 } from '../shared/model/menu1.model';
+import {Message} from 'primeng/components/common/api';
 @Component({
   selector: 'jhi-menuofvendor',
   templateUrl: './menuofvendor.component.html',
@@ -15,18 +18,31 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class MenuofVendorComponent implements OnInit {
 
+  menus1: Menu1[]=[];
+ 
   menus: IMenu[];
   currentAccount: any;
   eventSubscriber: Subscription;
   vendorName:String;
-
+  displayOrder: boolean = false;
+  displayPay: boolean = false;
+  quantity: number=0;
+  total:number;
+  cost:number;
+  finalTotal:number=0;
+  public menu1: Menu1;
+  message: String;
+  msgs: Message[] = [];
   constructor(
     protected menuService: MenuService,
     protected jhiAlertService: JhiAlertService,
     protected eventManager: JhiEventManager,
     protected accountService: AccountService,
     protected route: ActivatedRoute
-  ) {}
+  ) {
+
+     
+  }
 
   loadAll() {
     this.menuService
@@ -69,4 +85,44 @@ export class MenuofVendorComponent implements OnInit {
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
   }
+  showDialog(foodname:String,cost:number) {
+    this.displayOrder = true;
+    this.cost=cost;
+    this.menu1=new Menu1();
+    this.menu1.cost=cost;
+
+    //this.menu1.cost=cost;
+    this.menu1.name=foodname;
+}
+
+
+updateTotal() {
+  
+  this.menu1.selectedquantity=this.quantity;
+  this.menu1.totalcost=this.menu1.selectedquantity*this.menu1.cost;
+  //alert(this.menu1.selectedquantity*this.menu1.cost);
+  //alert(this.quantity*this.menu1.cost);
+  this.menus1.push(this.menu1);
+  this.menu1=null;
+  this.displayOrder = false;
+  this.showSuccessOrder() 
+}
+updateTotal1() {
+ this.displayPay = false;
+  this.showSuccessPay() 
+}
+showSuccessOrder() {
+  this.msgs = [];
+  this.displayOrder = false;
+  this.msgs.push({severity:'success', summary:'Success Message', detail:'Item added successfully !!'});
+}
+showDialogPay()
+{
+  this.displayPay = true;
+}
+showSuccessPay() {
+  this.displayPay = false;
+  this.msgs = [];
+  this.msgs.push({severity:'success', summary:'Success Message', detail:'Please pay @ Restaurant Outlet !!'});
+}
 }

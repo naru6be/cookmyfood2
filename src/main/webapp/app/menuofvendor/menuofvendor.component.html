@@ -1,16 +1,42 @@
 <div class="row">
-    <p class="lead">Choose Menu</p>
+    <p class="lead">Choose Menu of {{vendorName}}</p>
+    <p-messages [(value)]="msgs"></p-messages>
+    <p-dialog header="Add quantity" [(visible)]="displayOrder" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70" 
+        [maximizable]="true" [baseZIndex]="10000">
+       
+        <p-spinner size="30" [(ngModel)]="quantity"></p-spinner>
+        <button type="button" pButton icon="pi pi-check" (click)="updateTotal()" label="Yes"></button>
+        
+</p-dialog>
+
+<p-dialog header="Payment" [(visible)]="displayPay" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70" 
+[maximizable]="true" [baseZIndex]="10000">
+
+<ng-template ngFor let-item [ngForOf]="menus1" let-i="index" [ngForTrackBy]="trackByFn">
+    {{item.name}} - {{item.selectedquantity}} - {{item.cost}}</br>
+  </ng-template>
+  
+  <ng-template [ngIf]= "menus1?.length == 0">
+  <p> Please select food item !!</p>
+  </ng-template>
+  <button type="button" pButton icon="pi pi-check" (click)="updateTotal1()" label="Yes"></button>
+
+</p-dialog>
+
 <div class="grid grid-pad">
-      <a  *ngFor="let menu of menus ;trackBy: trackId" class="col-1-4"
-          routerLink="/pay">
+      <a  *ngFor="let menu of menus ;trackBy: trackId" class="col-1-4" (click)="showDialog(menu.fooditem?.foodname,menu.fooditem?.cost)">
         <!--<div class="module hero">-->
           
             <ng-template [ngIf]= "menu.vendor?.name === vendorName">
-              <h4>{{menu.fooditem?.foodname}}</h4>
+              <h4>{{menu.fooditem?.foodname}} - {{menu.fooditem?.cost}}</h4>
            <img [src]="'data:' + menu.fooditem?.imageContentType + ';base64,' + menu.fooditem?.image" style="max-height: 200px;" alt="fooditem image"/>
           </ng-template>
+          
           <!-- <h4>{{vendor.name}}</h4> 
-        </div> -->
+        </div> 
+        <ng-template ngFor let-menu [ngForOf]="menus" let-i="index" [ngForTrackBy]="trackId" class="col-1-4"></ng-template> -->
       </a>
+      <button type="button" (click)="showDialogPay()" pButton icon="pi pi-info-circle" label="Pay"></button>
     </div>
   </div>
+

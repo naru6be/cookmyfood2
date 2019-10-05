@@ -25,6 +25,10 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MenuofVendorComponent } from './menuofvendor/menuofvendor.component';
 import { CookmyfoodMenuOfVendorModule} from './menuofvendor/menuofvendor.module';  
+import {DialogModule} from 'primeng/dialog';
+import {SpinnerModule} from 'primeng/spinner';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 @NgModule({
   imports: [
     BrowserModule,
@@ -33,7 +37,7 @@ import { CookmyfoodMenuOfVendorModule} from './menuofvendor/menuofvendor.module'
       // set below to true to make alerts look like toast
       alertAsToast: false,
       alertTimeout: 5000
-    }),CookmyfoodSharedModule.forRoot(),CookmyfoodMenuOfVendorModule,CookmyfoodCoreModule,CookmyfoodHomeModule,CookmyfoodAccountModule,CookmyfoodEntityModule,CookmyfoodAppRoutingModule,TabMenuModule,BrowserAnimationsModule,AccordionModule,PanelModule, RatingModule, CalendarModule, ButtonModule
+    }),CookmyfoodSharedModule.forRoot(),CookmyfoodMenuOfVendorModule,MessagesModule,MessageModule,SpinnerModule,DialogModule,CookmyfoodCoreModule,CookmyfoodHomeModule,CookmyfoodAccountModule,CookmyfoodEntityModule,CookmyfoodAppRoutingModule,TabMenuModule,BrowserAnimationsModule,AccordionModule,PanelModule, RatingModule, CalendarModule, ButtonModule
   ],
   declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
   providers: [

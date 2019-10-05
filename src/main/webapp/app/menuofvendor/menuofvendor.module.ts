@@ -7,9 +7,12 @@ import {TabMenuModule} from 'primeng/tabmenu';
 import {MenuItem} from 'primeng/api';
 import {ButtonModule, PanelModule} from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import {DialogModule} from 'primeng/dialog';
+import {SpinnerModule} from 'primeng/spinner';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 @NgModule({
-  imports: [CookmyfoodSharedModule,BrowserAnimationsModule,TabMenuModule,ButtonModule, PanelModule, RouterModule.forChild([MENUOFVENDOR_ROUTE])],
+  imports: [CookmyfoodSharedModule,SpinnerModule,MessagesModule,MessageModule,DialogModule,BrowserAnimationsModule,TabMenuModule,ButtonModule, PanelModule, RouterModule.forChild([MENUOFVENDOR_ROUTE])],
   declarations: [MenuofVendorComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
